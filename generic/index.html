@@ -46,7 +46,7 @@
       window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "q44qconr",
-        hand_off_with_javascript: async() => {
+        handoff_with_javascript: async() => {
           console.log('handing off with javascript');
           await zE('messenger:set', 'conversationFields', [{ id: 30684896874386, value: '7654321' }])
           await zE('messenger', 'open');
