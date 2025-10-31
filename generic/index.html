@@ -57,16 +57,18 @@
           await new Promise(resolve => setTimeout(resolve, 2000));
           let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
 
-          composer.value = 'Imagine this was the transcript';
+          setter = Object.getOwnPropertyDescriptor(
+            composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
+            'value'
+          ).set;
 
-          composer.dispatchEvent(new KeyboardEvent('keydown', {
-            key: 'Enter',
-            code: 'Enter',
-            keyCode: 13,
-            which: 13,
-            bubbles: true,
-            cancelable: true
-          }));
+          setter.call(composer, 'Imagine this was the transcript');
+
+          composer.dispatchEvent(new Event('input', { bubbles: true }));
+          
+          await new Promise(resolve => setTimeout(resolve, 500));
+
+          document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('button[aria-label="Send message"]').click()
         }
       }
 
