@@ -57,7 +57,7 @@
           await new Promise(resolve => setTimeout(resolve, 2000));
           let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
 
-          setter = Object.getOwnPropertyDescriptor(
+          let setter = Object.getOwnPropertyDescriptor(
             composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
             'value'
           ).set;
