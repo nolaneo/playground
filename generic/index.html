@@ -48,9 +48,13 @@
         app_id: "q44qconr",
         handoff_with_javascript: async() => {
           console.log('handing off with javascript');
+          Intercom('shutdown');
+          await zE('messenger', 'show');
           await zE('messenger:set', 'conversationFields', [{ id: 30684896874386, value: '7654321' }])
           await zE('messenger', 'open');
 
+
+          await new Promise(resolve => setTimeout(resolve, 2000));
           let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
 
           composer.value = 'Imagine this was the transcript';
