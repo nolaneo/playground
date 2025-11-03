@@ -57,21 +57,21 @@
           await zE('messenger', 'open');
 
 
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
+          // await new Promise(resolve => setTimeout(resolve, 2000));
+          // let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
 
-          let setter = Object.getOwnPropertyDescriptor(
-            composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
-            'value'
-          ).set;
+          // let setter = Object.getOwnPropertyDescriptor(
+          //   composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
+          //   'value'
+          // ).set;
 
-          setter.call(composer, 'Imagine this was the transcript');
+          // setter.call(composer, 'Imagine this was the transcript');
 
-          composer.dispatchEvent(new Event('input', { bubbles: true }));
+          // composer.dispatchEvent(new Event('input', { bubbles: true }));
           
-          await new Promise(resolve => setTimeout(resolve, 500));
+          // await new Promise(resolve => setTimeout(resolve, 500));
 
-          document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('button[aria-label="Send message"]').click()
+          // document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('button[aria-label="Send message"]').click()
         }
       }
 
