@@ -51,8 +51,8 @@
           Intercom('shutdown');
           await zE('messenger', 'show');
           await zE('messenger:set', 'conversationFields', [
-            { id: 31435065470493, value: new String(conversationId) },
-            { id: 31505741984541, value: new String(transcript) }
+            { id: 31435065470493, value: new String(conversationId).toString() },
+            { id: 31505741984541, value: new String(transcript).toString() }
           ])
           await zE('messenger', 'open');
 
