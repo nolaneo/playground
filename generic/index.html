@@ -46,11 +46,14 @@
       window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "q44qconr",
-        handoff_with_javascript: async() => {
-          console.log('handing off with javascript');
+        handoff_with_javascript: async({ conversationId, transcript }) => {
+          console.log('handing off with javascript', conversationId, transcript);
           Intercom('shutdown');
           await zE('messenger', 'show');
-          await zE('messenger:set', 'conversationFields', [{ id: 31435065470493, value: '7654321' }])
+          await zE('messenger:set', 'conversationFields', [
+            { id: 31435065470493, value: conversationId },
+            { id: 31505741984541, value: transcript }
+          ])
           await zE('messenger', 'open');
 
 
