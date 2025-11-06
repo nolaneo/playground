@@ -27,10 +27,6 @@
         window.localStorage.clear();
         window.sessionStorage.clear();
         window.location.reload();
-        if (window.Intercom) {
-          window.Intercom('shutdown');
-
-        }
 
       }
       
@@ -43,50 +39,7 @@
       </div>
       <button class="bg-black text-white p-2 m-2 rounded hover:bg-opacity-75" onclick="reset()">Reset</button>
     </div>
-    <script>
-      window.intercomSettings = {
-        api_base: "https://api-iam.intercom.io",
-        app_id: "q44qconr",
-        handoff_with_javascript: async({ conversationId, transcript }) => {
-          console.log('handing off with javascript', conversationId, transcript);
-          Intercom('shutdown');
-          await zE('messenger', 'show');
-          await zE('messenger:set', 'conversationFields', [
-            { id: 31435065470493, value: new String(conversationId).toString() }, // Fin Conversation ID
-            { id: 31505741984541, value: new String(transcript).toString() } // Transcript
-          ])
-          await zE('messenger', 'open');
-
-
-        //   await new Promise(resolve => setTimeout(resolve, 2000));
-        //   let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
-
-        //   let setter = Object.getOwnPropertyDescriptor(
-        //     composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
-        //     'value'
-        //   ).set;
-
-        //   setter.call(composer, 'I want to speak with an agent');
-
-        //   composer.dispatchEvent(new Event('input', { bubbles: true }));
-          
-        //   await new Promise(resolve => setTimeout(resolve, 500));
-
-        //   document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('button[aria-label="Send message"]').click()
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOMContentLoaded');
-        zE('messenger', 'hide');
-      });
-    </script>
-
-
-    <script>
-      // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/q44qconr'
-      (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/q44qconr';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-    </script>
+  
 
 
 <!-- Start of shfinmessenger Zendesk Widget script -->
