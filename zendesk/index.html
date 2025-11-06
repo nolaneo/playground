@@ -29,10 +29,10 @@
         window.location.reload();
         if (window.Intercom) {
           window.Intercom('shutdown');
+
         }
 
       }
-      
     </script>
   </head>
   <body class="p-6 flex flex-col flex-1 items-center justify-center min-h-screen bg-cover" style="background-image: url('https://downloads.intercomcdn.com/i/o/1051523575/8c16c6bb97ae791131ead20c/blur.jpg')">
@@ -42,7 +42,44 @@
       </div>
       <button class="bg-black text-white p-2 m-2 rounded hover:bg-opacity-75" onclick="reset()">Reset</button>
     </div>
+    <script>
+      window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "q44qconr",
+        handoff_with_javascript: async({ conversationId, transcript }) => {
+          console.log('handing off with javascript', conversationId, transcript);
+          Intercom('shutdown');
+          await zE('messenger', 'show');
+          await zE('messenger:set', 'conversationFields', [
+            { id: 31435065470493, value: new String(conversationId).toString() }, // Fin Conversation ID
+            { id: 31505741984541, value: new String(transcript).toString() } // Transcript
+          ])
+          await zE('messenger', 'open');
 
+
+        //   await new Promise(resolve => setTimeout(resolve, 2000));
+        //   let composer = document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('textarea#composer-input');
+
+        //   let setter = Object.getOwnPropertyDescriptor(
+        //     composer.ownerDocument.defaultView.HTMLTextAreaElement.prototype,
+        //     'value'
+        //   ).set;
+
+        //   setter.call(composer, 'I want to speak with an agent');
+
+        //   composer.dispatchEvent(new Event('input', { bubbles: true }));
+          
+        //   await new Promise(resolve => setTimeout(resolve, 500));
+
+        //   document.querySelector('iframe[name="Messaging window"]').contentDocument.querySelector('button[aria-label="Send message"]').click()
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded');
+        zE('messenger', 'hide');
+      });
+    </script>
 
 
     <script>
