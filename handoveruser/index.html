@@ -44,11 +44,14 @@
       <button class="bg-black text-white p-2 m-2 rounded hover:bg-opacity-75" onclick="reset()">Reset</button>
     </div>
     <script>
+      // Get email from query parameter if available
+      const urlParams = new URLSearchParams(window.location.search);
+      const emailParam = urlParams.get('email');
+      
       window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "q44qconr",
-        user_id: "1234",
-        email: "test@example.com",
+        email: emailParam || "test@example.com",
         handoff_with_javascript: async({ conversationId, transcript }) => {
           console.log('handing off with javascript', conversationId, transcript);
           Intercom('shutdown');
